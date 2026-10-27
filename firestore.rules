@@ -1,0 +1,35 @@
+rules_version = '2';
+// Paste into Firebase console > Firestore Database > Rules, then Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+    function email() {
+      return request.auth.token.email.lower();
+    }
+    function isOwner() {
+      return signedIn() && email() == "vyomagrawal2406@gmail.com";
+    }
+    function isAdmin() {
+      return isOwner() || (signedIn() && exists(/databases/$(database)/documents/admins/$(email())));
+    }
+
+    // Gallery items: anyone can view, only admins can add or remove.
+    match /media/{id} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasOnly(["kind", "url", "cap", "category", "createdAt"])
+        && request.resource.data.kind in ["image", "video"]
+        && request.resource.data.url is string && request.resource.data.url.size() < 500
+        && request.resource.data.cap is string && request.resource.data.cap.size() < 200;
+      allow delete: if isAdmin();
+    }
+
+    // Admin list: each person can check their own entry; only the owner manages it.
+    match /admins/{adminEmail} {
+      allow get: if signedIn() && (adminEmail == email() || isOwner());
+      allow list, write: if isOwner();
+    }
+  }
+}

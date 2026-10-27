@@ -30,3 +30,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Deploy output and local secrets
+.vercel
+.env
+.env.local

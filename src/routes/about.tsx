@@ -7,14 +7,14 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const WHAT = [
+const WHAT: [string, string][] = [
   ["Hands-on robotics workshops", "Students learn by building, testing, and experimenting with basic robotics concepts."],
   ["Coding and AI exposure", "How code controls machines and how AI can support commands, automation, and learning."],
   ["Online follow-up sessions", "Zoom sessions so the learning does not stop after the workshop."],
   ["Curriculum development", "A beginner-friendly curriculum for Grades 6–9 that partners can deliver consistently."],
   ["Robotics mini-lab support", "Raising funds for kits, equipment, and lab infrastructure for continued practice."],
 ];
-const PARTNERS = [
+const PARTNERS: [string, string][] = [
   ["Srijan Ek Soch", "Provides access to students and on-ground coordination in India, reaching students who may not otherwise have structured robotics or AI exposure."],
   ["STEMVerse", "Supports the on-ground delivery model, including instructor support, equipment guidance, and structured session delivery."],
   ["RoboRoots", "Provides the vision, curriculum direction, fundraising support, online teaching continuity, and student-led program leadership."],

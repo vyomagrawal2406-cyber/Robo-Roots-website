@@ -6,7 +6,7 @@ export const Route = createFileRoute("/updates")({
   component: Updates,
 });
 
-const UPDATES = [
+const UPDATES: [string, string, string][] = [
   ["U.S. Workshops", "U.S. Robotics Fundraising Workshop — Coming Soon", "A beginner robotics workshop for younger students in the U.S. Proceeds support robotics learning access for students in India."],
   ["Lab Fundraising", "Robotics Mini-Lab Fundraising Begins", "Raising funds for a mini-lab where students can keep practicing with kits, sensors, motors, and structured learning material."],
   ["Online Learning", "Online Sessions Continue", "After the India workshop, Zoom sessions reinforce concepts and maintain learning continuity."],

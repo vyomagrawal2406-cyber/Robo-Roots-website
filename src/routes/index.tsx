@@ -18,7 +18,7 @@ const SLIDES = [
   { src: news, cap: "In the news" },
 ];
 
-const IMPACT = [
+const IMPACT: [string, string][] = [
   ["5-day", "in-person robotics & AI workshop in India"],
   ["57", "students reached through hands-on sessions"],
   ["Zoom", "online support continues the learning"],
@@ -51,7 +51,7 @@ function Home() {
             {SLIDES.map((s, k) => (
               <button key={k} aria-label={s.cap} onClick={() => setI(k)} className={`h-1.5 rounded-full transition-all ${k === i ? "w-10 bg-secondary" : "w-5 bg-primary-foreground/40"}`} />
             ))}
-            <span className="ml-3 text-sm opacity-80">{SLIDES[i].cap}</span>
+            <span className="ml-3 text-sm opacity-80">{SLIDES[i]?.cap}</span>
           </div>
         </div>
       </section>

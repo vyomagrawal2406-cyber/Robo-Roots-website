@@ -8,7 +8,7 @@ export const Route = createFileRoute("/support")({
 });
 
 const FUNDS = ["Robotics kits", "Motors & sensors", "Microcontrollers", "Batteries & wiring", "Tools & build materials", "Student worksheets", "Curriculum material", "Lab setup", "Instructor support", "Continued sessions"];
-const WAYS = [
+const WAYS: [string, string][] = [
   ["Sponsor a robotics kit", "Provide one kit or a portion of a kit for student learning."],
   ["Support lab setup", "Equipment and materials for a usable robotics learning space."],
   ["Fund learning materials", "Worksheets, printed guides, practice activities, and resources."],

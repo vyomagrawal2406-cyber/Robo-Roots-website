@@ -11,21 +11,21 @@ import upKiBaat from "@/assets/press/up-ki-baat.jpg";
 
 export const EMAIL = "roborootsinitiative@gmail.com";
 
-// Supabase (powers /admin, /learn and admin-added Gallery items). Both values are safe to be
-// public; the database rules in supabase/setup.sql are what protect the data.
-// Find them in Supabase > Project Settings > API Keys / Data API.
-export const SUPABASE_URL = "https://yogkucppnqzhwlsrmjmj.supabase.co";
-export const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_k_XS3TMDUnk3zw6cnNq09Q_73WUKm55";
+// Keys and links come from environment variables: the .env file locally, and
+// Vercel > Project > Settings > Environment Variables when deployed. See .env.example.
+// Supabase powers /admin, /learn and admin-added Gallery items.
+export const SUPABASE_URL: string = import.meta.env["VITE_SUPABASE_URL"] ?? "";
+export const SUPABASE_PUBLISHABLE_KEY: string =
+  import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ?? "";
 
 // Shown on the Privacy, Terms and Refund pages. Replace the placeholders before going live.
 export const POLICY_EMAIL = "[your-email@example.com]";
 export const POLICY_LOCATION = "[City, State, Country]";
 export const POLICY_UPDATED = "November 4, 2026";
 
-// Paste the Stripe Payment Link here (e.g. https://buy.stripe.com/...).
+// Stripe Payment Link for every Donate button (VITE_DONATE_URL).
 // While empty, every donate button opens an email to EMAIL instead.
-// TEST MODE link (fake cards only). Replace with the live link before launch.
-export const DONATE_URL = "https://donate.stripe.com/test_7sY14p78d8MndhfffB7kc00";
+export const DONATE_URL: string = import.meta.env["VITE_DONATE_URL"] ?? "";
 
 // Free contact form backend: get an access key at https://web3forms.com (sent to EMAIL)
 // and set VITE_WEB3FORMS_KEY. While empty, the form falls back to opening an email.

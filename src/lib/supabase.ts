@@ -2,11 +2,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "@/content/site";
 
-const url: string = import.meta.env["VITE_SUPABASE_URL"] || SUPABASE_URL;
-const key: string =
-  import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ||
-  import.meta.env["VITE_SUPABASE_ANON_KEY"] ||
-  SUPABASE_PUBLISHABLE_KEY;
+const url = SUPABASE_URL;
+const key = SUPABASE_PUBLISHABLE_KEY;
 
 export const supabaseReady = Boolean(url && key);
 

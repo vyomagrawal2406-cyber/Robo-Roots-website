@@ -9,8 +9,9 @@
 ## One-time setup (about 10 minutes)
 
 1. **Keys**: Supabase > Project Settings > API Keys. Put the **Project URL** and the
-   **publishable key** in `src/content/site.ts` (`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`).
-   Both are safe to be public. **Never** put the secret key (`sb_secret_...`) in the website.
+   **publishable key** in `.env` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, see
+   `.env.example`) and in Vercel > Settings > Environment Variables.
+   **Never** put the secret key (`sb_secret_...`) in the website.
 2. **Admin login**: Authentication > Users > **Add user** > Create new user. Enter the admin's
    email and password and tick **Auto Confirm User**.
 3. **Turn off public sign-ups**: Authentication > Sign In / Providers > turn off

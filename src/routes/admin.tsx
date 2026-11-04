@@ -58,8 +58,8 @@ function Admin() {
       <Section className="max-w-xl">
         <h1 className="text-3xl text-primary">Admin</h1>
         <p className="mt-4 text-muted-foreground">
-          Supabase is not connected yet. Add SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY in
-          src/content/site.ts (see SUPABASE_SETUP.md) and reload.
+          Supabase is not connected yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY to
+          the environment variables (see .env.example) and redeploy.
         </p>
       </Section>
     );

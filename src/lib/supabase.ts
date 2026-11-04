@@ -21,7 +21,11 @@ export function check<T>(res: { data: T; error: { message: string } | null }): T
 
 export async function signIn(email: string, password: string) {
   const s = await sb();
-  const { error } = await s.auth.signInWithPassword({ email: email.trim(), password });
+  // Trim both: copy-pasted credentials often carry a stray space.
+  const { error } = await s.auth.signInWithPassword({
+    email: email.trim(),
+    password: password.trim(),
+  });
   if (error) throw new Error(error.message);
 }
 

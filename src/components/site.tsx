@@ -9,9 +9,17 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
   { to: "/curriculum", label: "Curriculum" },
+  { to: "/learn", label: "Learn" },
   { to: "/support", label: "Support the Lab" },
   { to: "/updates", label: "Updates" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/contact", label: "Contact" },
+] as const;
+
+const LEGAL = [
+  { to: "/privacy", label: "Privacy Policy" },
+  { to: "/terms", label: "Terms & Conditions" },
+  { to: "/refund-policy", label: "Refund Policy" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -126,9 +134,18 @@ export function SiteFooter() {
           </a>
         </div>
       </div>
-      <p className="border-t border-primary-foreground/10 px-4 py-4 text-center text-xs opacity-60">
-        © {new Date().getFullYear()} RoboRoots. Founded by Vyom Agrawal.
-      </p>
+      <div className="flex flex-col items-center gap-2 border-t border-primary-foreground/10 px-4 py-4 text-xs sm:flex-row sm:justify-between sm:px-5">
+        <p className="opacity-60">
+          © {new Date().getFullYear()} RoboRoots. Founded by Vyom Agrawal.
+        </p>
+        <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+          {LEGAL.map((n) => (
+            <Link key={n.to} to={n.to} className="py-1 opacity-70 hover:text-secondary">
+              {n.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </footer>
   );
 }
@@ -176,7 +193,7 @@ export function CTA({
   children,
   variant = "orange",
 }: {
-  to: "/support" | "/gallery" | "/contact" | "/about" | "/curriculum" | "/updates";
+  to: "/support" | "/gallery" | "/contact" | "/about" | "/curriculum" | "/updates" | "/learn";
   children: ReactNode;
   variant?: keyof typeof CTA_STYLES;
 }) {

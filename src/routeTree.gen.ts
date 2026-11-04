@@ -15,7 +15,11 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as SupportRouteImport } from './routes/support'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UpdatesRouteImport } from './routes/updates'
 
 const IndexRoute = IndexRouteImport.update({
@@ -48,9 +52,29 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UpdatesRoute = UpdatesRouteImport.update({
@@ -66,7 +90,11 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/gallery': typeof GalleryRoute
+  '/learn': typeof LearnRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/support': typeof SupportRoute
+  '/terms': typeof TermsRoute
   '/updates': typeof UpdatesRoute
 }
 export interface FileRoutesByTo {
@@ -76,7 +104,11 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/gallery': typeof GalleryRoute
+  '/learn': typeof LearnRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/support': typeof SupportRoute
+  '/terms': typeof TermsRoute
   '/updates': typeof UpdatesRoute
 }
 export interface FileRoutesById {
@@ -87,7 +119,11 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/curriculum': typeof CurriculumRoute
   '/gallery': typeof GalleryRoute
+  '/learn': typeof LearnRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/support': typeof SupportRoute
+  '/terms': typeof TermsRoute
   '/updates': typeof UpdatesRoute
 }
 export interface FileRouteTypes {
@@ -99,7 +135,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/curriculum'
     | '/gallery'
+    | '/learn'
+    | '/privacy'
+    | '/refund-policy'
     | '/support'
+    | '/terms'
     | '/updates'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -109,7 +149,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/curriculum'
     | '/gallery'
+    | '/learn'
+    | '/privacy'
+    | '/refund-policy'
     | '/support'
+    | '/terms'
     | '/updates'
   id:
     | '__root__'
@@ -119,7 +163,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/curriculum'
     | '/gallery'
+    | '/learn'
+    | '/privacy'
+    | '/refund-policy'
     | '/support'
+    | '/terms'
     | '/updates'
   fileRoutesById: FileRoutesById
 }
@@ -130,7 +178,11 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CurriculumRoute: typeof CurriculumRoute
   GalleryRoute: typeof GalleryRoute
+  LearnRoute: typeof LearnRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
   SupportRoute: typeof SupportRoute
+  TermsRoute: typeof TermsRoute
   UpdatesRoute: typeof UpdatesRoute
 }
 
@@ -178,11 +230,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
       fullPath: '/support'
       preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/updates': {
@@ -202,7 +282,11 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CurriculumRoute: CurriculumRoute,
   GalleryRoute: GalleryRoute,
+  LearnRoute: LearnRoute,
+  PrivacyRoute: PrivacyRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
   SupportRoute: SupportRoute,
+  TermsRoute: TermsRoute,
   UpdatesRoute: UpdatesRoute,
 }
 export const routeTree = rootRouteImport

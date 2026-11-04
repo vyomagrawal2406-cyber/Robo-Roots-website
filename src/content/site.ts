@@ -11,9 +11,21 @@ import upKiBaat from "@/assets/press/up-ki-baat.jpg";
 
 export const EMAIL = "roborootsinitiative@gmail.com";
 
-// Paste a donation page link here (Razorpay Payment Page, PayPal, Zeffy, GoFundMe...).
+// Supabase (powers /admin, /learn and admin-added Gallery items). Both values are safe to be
+// public; the database rules in supabase/setup.sql are what protect the data.
+// Find them in Supabase > Project Settings > API Keys / Data API.
+export const SUPABASE_URL = "https://yogkucppnqzhwlsrmjmj.supabase.co";
+export const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_k_XS3TMDUnk3zw6cnNq09Q_73WUKm55";
+
+// Shown on the Privacy, Terms and Refund pages. Replace the placeholders before going live.
+export const POLICY_EMAIL = "[your-email@example.com]";
+export const POLICY_LOCATION = "[City, State, Country]";
+export const POLICY_UPDATED = "November 4, 2026";
+
+// Paste the Stripe Payment Link here (e.g. https://buy.stripe.com/...).
 // While empty, every donate button opens an email to EMAIL instead.
-export const DONATE_URL = "";
+// TEST MODE link (fake cards only). Replace with the live link before launch.
+export const DONATE_URL = "https://donate.stripe.com/test_7sY14p78d8MndhfffB7kc00";
 
 // Free contact form backend: get an access key at https://web3forms.com (sent to EMAIL)
 // and set VITE_WEB3FORMS_KEY. While empty, the form falls back to opening an email.
@@ -113,3 +125,79 @@ export const UPDATES: Update[] = [
     body: "RoboRoots completed a 5-day hands-on robotics and AI workshop with students in India. Students were introduced to basic robotics components, coding logic, AI concepts, and hands-on building.",
   },
 ];
+
+// The 8 curriculum modules (Curriculum page) and the groups used on the Learn page.
+export const MODULES: [string, string, string[]][] = [
+  [
+    "Introduction to Robotics",
+    "What robots are, where they are used, and how robotics connects to real-world problems.",
+    [
+      "What is a robot?",
+      "Robots in daily life",
+      "How robots help humans",
+      "Robots vs. regular machines",
+    ],
+  ],
+  [
+    "Parts of a Robot",
+    "The basic physical components that make a robot work.",
+    [
+      "Motors",
+      "Wheels",
+      "Chassis",
+      "Sensors",
+      "Wires",
+      "Batteries",
+      "Microcontrollers",
+      "Tools & safety",
+    ],
+  ],
+  [
+    "Circuits and Movement",
+    "How electricity, circuits, and motors allow robots to move.",
+    [
+      "Power flow in a circuit",
+      "How motors create movement",
+      "Wheel & chassis design",
+      "Troubleshooting movement",
+    ],
+  ],
+  [
+    "Sensors and Inputs",
+    "How robots gather information from the world around them.",
+    ["What sensors do", "Distance sensors", "Light, sound & touch", "Real-world automation"],
+  ],
+  [
+    "Coding the Robot",
+    "How code gives instructions to a robot.",
+    ["Commands", "Loops", "Conditions", "Inputs & outputs", "Debugging", "Robotics logic"],
+  ],
+  [
+    "Build Challenge",
+    "Build or modify a robot to complete a simple task.",
+    [
+      "Testing designs",
+      "Improving a build",
+      "Teamwork",
+      "Troubleshooting",
+      "Explaining design decisions",
+    ],
+  ],
+  [
+    "AI and Automation",
+    "Basic AI concepts in a simple, beginner-friendly way.",
+    [
+      "What AI means",
+      "Voice commands",
+      "Responding to inputs",
+      "AI for automation",
+      "Responsible technology",
+    ],
+  ],
+  [
+    "Final Showcase",
+    "Present what they built, explain how it works, and reflect.",
+    ["What they built", "Problem solved", "Challenges", "Improvements", "What they learned"],
+  ],
+];
+export const LESSON_MODULES = [...MODULES.map((m) => m[0]), "Extra"];

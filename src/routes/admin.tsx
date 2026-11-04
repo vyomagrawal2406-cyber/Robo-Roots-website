@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
-import { FileText, Pencil, Trash2 } from "lucide-react";
+import { FileText, Pencil, Trash2, X } from "lucide-react";
 import { Section } from "@/components/site";
 import { GALLERY_CATEGORIES, LESSON_MODULES, type GalleryCategory } from "@/content/site";
 import { addMedia, deleteMedia, listMedia, parseLink, thumbUrl } from "@/lib/media";
@@ -209,6 +209,36 @@ function LessonManager() {
     setFile(null);
     setMode("upload");
     setEditing(null);
+  };
+
+  // Removes just the video or just the slides/PDF. If nothing would be left, offers to
+  // delete the whole lesson instead.
+  const removePart = async (l: Lesson, part: "video" | "resource") => {
+    const other = part === "video" ? l.resource_url : l.video_url;
+    const what = part === "video" ? "video" : resourceLabel(l.resource_url ?? "", l.resource_name);
+    try {
+      if (!other) {
+        if (!confirm(`"${l.title}" only has this ${what}. Delete the whole lesson?`)) return;
+        await deleteLesson(l);
+      } else {
+        if (!confirm(`Remove the ${what} from "${l.title}"? The rest of the lesson stays.`)) return;
+        if (part === "video") {
+          await updateLesson(l.id, { video_url: null });
+        } else {
+          await updateLesson(l.id, {
+            resource_url: null,
+            resource_name: null,
+            resource_path: null,
+          });
+          if (l.resource_path) await removeFile(l.resource_path);
+        }
+      }
+      if (editing?.id === l.id) reset();
+      setMsg(`Removed. The Learn page is updated.`);
+      await refresh();
+    } catch (err) {
+      alert(errText(err));
+    }
   };
 
   const startEdit = (l: Lesson) => {
@@ -426,14 +456,17 @@ function LessonManager() {
                   )}
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold">{l.title}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {[
-                        l.video_url && "Video",
-                        l.resource_url && resourceLabel(l.resource_url, l.resource_name),
-                      ]
-                        .filter(Boolean)
-                        .join(" + ")}
-                    </p>
+                    <div className="mt-1 flex flex-wrap gap-2">
+                      {l.video_url && (
+                        <RemovePart label="Video" onRemove={() => removePart(l, "video")} />
+                      )}
+                      {l.resource_url && (
+                        <RemovePart
+                          label={resourceLabel(l.resource_url, l.resource_name)}
+                          onRemove={() => removePart(l, "resource")}
+                        />
+                      )}
+                    </div>
                   </div>
                   <button
                     aria-label="Edit"
@@ -462,6 +495,23 @@ function LessonManager() {
         );
       })}
     </>
+  );
+}
+
+function RemovePart({ label, onRemove }: { label: string; onRemove: () => void }) {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full bg-muted py-1 pl-3 pr-1 text-xs font-semibold">
+      {label}
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label={`Remove ${label}`}
+        title={`Remove ${label}`}
+        className="grid h-6 w-6 place-items-center rounded-full text-destructive hover:bg-destructive/10"
+      >
+        <X size={14} />
+      </button>
+    </span>
   );
 }
 
